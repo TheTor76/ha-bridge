@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/bin/echo "true" | /bin/nc -q 1 $1 $2
