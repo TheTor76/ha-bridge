@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/bin/echo "$3" | /bin/nc -q 1 $1 $2

@@ -1,7 +1,7 @@
 # ha-bridge
 ha-bridge docker container similar to this [ha-bridge image](https://github.com/aptalca/docker-ha-bridge) but not running as root, using ubuntu as it's base image, and it allows you to run the container as read only and have the bridge configuration reset (either blank config or using the config files included in the startup-config directory) on the container restarting
 
-also includes scripts in /ha-bridge-scripts to send off/on command to [hs100/hs110 api](https://hub.docker.com/r/snipzwolf/hs100-api-endpoint/)
+also includes generic script @ /ha-bridge-scripts/send_nc to send commands to [hs100/hs110 api container](https://hub.docker.com/r/snipzwolf/hs100-api-endpoint/) or [wol container](https://hub.docker.com/r/snipzwolf/wol-endpoint/)
 
 ## Example usage
 ```
