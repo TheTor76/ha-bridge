@@ -26,6 +26,8 @@ ADD src/* ./
 WORKDIR /config
 RUN wget -q -O ./ha-bridge.jar https://github.com/bwssytems/ha-bridge/releases/download/v"$VERSION"/ha-bridge-"$VERSION".jar && \
     mkdir /config/startup-config/
+    
+RUN sudo update-alternatives --config java
 
 #RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
 RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/bin/java
