@@ -3,7 +3,10 @@ FROM ubuntu:18.04
 ENV SERVERPORT="80" \
     VERSION="5.2.2" \
     DEBCONF_NONINTERACTIVE_SEEN="true" \
-    DEBIAN_FRONTEND="noninteractive"
+    DEBIAN_FRONTEND="noninteractive" \
+    JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+    
+ENV PATH $JAVA_HOME/bin:$PATH
 
 WORKDIR /]
 RUN apt-get update && apt-get -y upgrade
@@ -12,9 +15,6 @@ RUN apt-get -y install software-properties-common wget netcat openjdk-8-jdk && \
     rm -rf /var/lib/apt/lists/* && \
     usermod -u 99 nobody && \
     usermod -g 100 nobody
-
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV PATH $JAVA_HOME/bin:$PATH\
 
 RUN apt-get -y autoremove && \
     apt-get clean && \
