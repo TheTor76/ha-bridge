@@ -3,10 +3,7 @@ FROM ubuntu:18.04
 ENV SERVERPORT="80" \
     VERSION="5.2.2" \
     DEBCONF_NONINTERACTIVE_SEEN="true" \
-    DEBIAN_FRONTEND="noninteractive" \
-    JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-    
-ENV PATH $JAVA_HOME/bin:$PATH
+    DEBIAN_FRONTEND="noninteractive"
 
 WORKDIR /]
 RUN apt-get update && apt-get -y upgrade
@@ -30,7 +27,7 @@ RUN wget -q -O ./ha-bridge.jar https://github.com/bwssytems/ha-bridge/releases/d
 RUN sudo update-alternatives --config java
 
 #RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
-RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/bin/java
+RUN setcap 'cap_net_bind_service=+ep' /usr/bin/java
 RUN chmod -R 0775 /ha-bridge-scripts && \
     chmod -R 0776 /config && \
     chown -R nobody:users /config
