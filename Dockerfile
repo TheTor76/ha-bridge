@@ -8,7 +8,7 @@ ENV SERVERPORT="80" \
 WORKDIR /]
 RUN apt-get update && apt-get -y upgrade
 
-RUN apt-get -y install software-properties-common netcat openjdk-8-jdk && \
+RUN apt-get -y install software-properties-common netcat openjdk-8-jdk wget apt-utils && \
     usermod -u 99 nobody && \
     usermod -g 100 nobody
 
