@@ -8,9 +8,13 @@ ENV SERVERPORT="80" \
 WORKDIR /]
 RUN apt-get update && apt-get -y upgrade
 
-RUN apt-get -y install software-properties-common netcat openjdk-8-jdk wget && \
+RUN apt-get -y install software-properties-common wget netcat openjdk-8-jdk && \
+    rm -rf /var/lib/apt/lists/* && \
     usermod -u 99 nobody && \
     usermod -g 100 nobody
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH $JAVA_HOME/bin:$PATH\
 
 RUN apt-get -y autoremove && \
     apt-get clean && \
@@ -23,7 +27,8 @@ WORKDIR /config
 RUN wget -q -O ./ha-bridge.jar https://github.com/bwssytems/ha-bridge/releases/download/v"$VERSION"/ha-bridge-"$VERSION".jar && \
     mkdir /config/startup-config/
 
-RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
+#RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
+RUN setcap 'cap_net_bind_service=+ep' /usr/lib/jvm/java-8-openjdk-arm64/bin/java
 RUN chmod -R 0775 /ha-bridge-scripts && \
     chmod -R 0776 /config && \
     chown -R nobody:users /config
