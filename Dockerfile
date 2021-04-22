@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 ENV SERVERPORT="80" \
-    VERSION="5.2.2" \
+    VERSION="5.4.1RC1" \
     DEBCONF_NONINTERACTIVE_SEEN="true" \
     DEBIAN_FRONTEND="noninteractive"
 
